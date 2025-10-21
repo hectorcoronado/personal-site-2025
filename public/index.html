@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Hector Coronado | Software Engineer</title>
+		<link rel="stylesheet" href="reset.css" />
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body class="body">
+		<main class="main">
+			<h1>Hi, I'm Hector and I'm a Frontend Engineer</h1>
+			<h2>What I bring to the table:</h2>
+			<ul class="list">
+				<li>
+					Performance optimization — I believe every millisecond matters. Fast
+					interfaces aren't a luxury; they're a necessity.
+				</li>
+				<li>
+					Accessibility first — Building for everyone isn't optional. I create
+					interfaces that work beautifully for all users, regardless of ability.
+				</li>
+				<li>
+					User-centered design — I don't just write code; I solve real problems.
+					The best interfaces feel intuitive because they were built with
+					empathy and intention.
+				</li>
+			</ul>
+			<h2>What I'm looking for:</h2>
+			<p>
+				A team that values quality, a product that makes a difference, and an
+				opportunity to build something meaningful.
+			</p>
+			<p>
+				If your team is hiring or you know someone who is, I'd love to connect.
+				Let's build something great together!
+			</p>
+			<form id="contactForm">
+				<h2>Contact Me</h2>
+
+				<label for="name">Name</label>
+				<input class="formField" type="text" id="name" name="name" required />
+
+				<label for="email">Email</label>
+				<input
+					class="formField"
+					type="email"
+					id="email"
+					name="email"
+					required />
+
+				<label for="subject">Subject</label>
+				<input
+					class="formField"
+					type="text"
+					id="subject"
+					name="subject"
+					required />
+
+				<label for="message">Message</label>
+				<textarea
+					class="formField"
+					id="message"
+					name="message"
+					rows="6"
+					required></textarea>
+
+				<button class="formButton" type="submit">Send Message</button>
+				<div id="status"></div>
+			</form>
+		</main>
+		<script>
+			document
+				.getElementById('contactForm')
+				.addEventListener('submit', async (e) => {
+					e.preventDefault();
+
+					const formData = {
+						name: document.getElementById('name').value,
+						email: document.getElementById('email').value,
+						subject: document.getElementById('subject').value,
+						message: document.getElementById('message').value,
+					};
+
+					const statusDiv = document.getElementById('status');
+					statusDiv.textContent = 'Sending...';
+
+					try {
+						const response = await fetch('/send-email', {
+							method: 'POST',
+							headers: {
+								'Content-Type': 'application/json',
+							},
+							body: JSON.stringify(formData),
+						});
+
+						const result = await response.json();
+
+						if (response.ok) {
+							statusDiv.textContent = 'Message sent successfully!';
+							statusDiv.style.color = 'green';
+							document.getElementById('contactForm').reset();
+						} else {
+							statusDiv.textContent =
+								'Failed to send message. Please try again.';
+							statusDiv.style.color = 'red';
+						}
+					} catch (error) {
+						statusDiv.textContent = 'Error sending message.';
+						statusDiv.style.color = 'red';
+					}
+				});
+		</script>
+	</body>
+</html>

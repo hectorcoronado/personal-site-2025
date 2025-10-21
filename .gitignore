@@ -1,0 +1,15 @@
+# dotenv environment variable files
+.env
+
+# Output of 'npm pack'
+*.tgz
+
+# Optional npm cache directory
+.npm
+
+# Dependency directories
+node_modules/
+
+# Logs
+*.log
+npm-debug.log*

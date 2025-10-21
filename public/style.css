@@ -1,0 +1,40 @@
+.body {
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+		Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.main,
+#contactForm {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	padding: 2rem;
+	min-width: 50vw;
+}
+
+.list {
+	margin: 2rem auto;
+	max-width: 500px;
+}
+
+.formField {
+	width: 100%;
+}
+
+.formButton {
+	width: 100%;
+	padding: 1rem;
+	border: none;
+	border-radius: 0.5rem;
+	background-color: #000;
+	color: #fff;
+	cursor: pointer;
+	margin-top: 1rem;
+	transition: transform 0.2s ease-in-out;
+}
+
+.formButton:hover {
+	transform: scale(1.03);
+}
