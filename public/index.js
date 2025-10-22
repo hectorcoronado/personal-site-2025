@@ -42,11 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	const container = document.getElementById('scrollContainer');
 	const list = document.getElementById('infiniteList');
 
-	if (!container || !list) {
-		console.error('Container or list not found');
-		return;
-	}
-
 	// Clone the items for seamless looping
 	const items = Array.from(list.children);
 	items.forEach((item) => {
@@ -66,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	setTimeout(() => {
 		updateDimensions();
 
-		// Use a more robust scroll detection
+		// Scroll detection
 		container.addEventListener('scroll', () => {
 			if (isResetting) return;
 
