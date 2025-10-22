@@ -15,6 +15,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
+// CSP (content security policy) to prevent xss attacks (along with xss-filters)
 app.use((req, res, next) => {
 	res.setHeader(
 		'Content-Security-Policy',
@@ -52,12 +53,13 @@ app.use('/send-email', limiter);
 // Handle form submission
 app.post('/send-email', async (req, res) => {
 	let { name, email, subject, message } = req.body;
+	// Sanitize inputs to prevent xss attacks (along with CSP)
 	name = xssFilters.inHTMLData(name);
 	email = xssFilters.inHTMLData(email);
 	subject = xssFilters.inHTMLData(subject);
 	message = xssFilters.inHTMLData(message);
 
-	// Validate input
+	// Validate input, frontend validation should prevent this
 	if (!name || !email || !subject || !message) {
 		return res.status(400).json({ error: 'All fields are required' });
 	}
