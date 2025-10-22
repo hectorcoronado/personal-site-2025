@@ -2,32 +2,32 @@
 	--main-bg-color: #232323;
 	--secondary-bg-color: #000;
 	--main-text-color: #fff;
-	--secondary-text-color: #888;
-	--main-font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
-		Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	--secondary-text-color: #ddd;
+	--main-font-family: 'Karla', system-ui, -apple-system, BlinkMacSystemFont,
+		'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
+		sans-serif;
+	--secondary-font-family: 'Space Mono', monospace, system-ui, -apple-system,
+		BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
+		'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .body {
 	font-family: var(--main-font-family);
+	font-size: 1.2rem;
 	background-color: var(--main-bg-color);
 	color: var(--main-text-color);
 }
 
-.main,
-.contactForm {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	min-width: 50vw;
-	overflow-x: hidden;
+.sectionSubHeading {
+	font-family: var(--secondary-font-family);
+	font-size: calc(2rem + 1vw);
 }
 
 .header {
-	display: flex;
-	height: 55px;
-	width: 100%;
 	background-color: var(--secondary-bg-color);
+	display: flex;
+	height: 3.5rem;
+	width: 100%;
 
 	.headerNav {
 		display: flex;
@@ -58,15 +58,27 @@
 	}
 }
 
+.main {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 0 2rem;
+}
+
+/****************/
 /* hero section */
+/****************/
 .hero {
 	border-bottom: 1px solid var(--secondary-text-color);
 	padding-bottom: 1rem;
+	margin-bottom: 2rem;
 }
 
 .mainTitle {
 	/* responsive font sizing, 16px + 5% of viewport width*/
 	font-size: calc(1.75rem + 3vw);
+	font-family: var(--secondary-font-family);
 	height: 60vh;
 	display: flex;
 	align-items: center;
@@ -82,7 +94,7 @@
 .scrollWrapper {
 	position: relative;
 	width: 100%;
-	max-width: 90vw;
+	max-width: 95vw;
 }
 
 .scrollWrapper::before,
@@ -141,6 +153,7 @@
 .technologiesTitle {
 	font-size: calc(1rem + 1vw);
 	text-align: center;
+	font-variant: small-caps;
 	margin-bottom: 1rem;
 	color: var(--secondary-text-color);
 	font-weight: 600;
@@ -158,19 +171,98 @@
 
 .technologiesList li {
 	flex-shrink: 0;
-	padding: 0.75rem;
+	padding: 0.5rem;
 	background: var(--secondary-bg-color);
 	color: var(--main-text-color);
 	border-radius: 8px;
+	font-family: var(--secondary-font-family);
 	font-size: 18px;
 	min-width: 150px;
 	text-align: center;
 }
 
-/* About section */
-.list {
-	margin: 2rem auto;
-	max-width: 500px;
+/*******************************/
+/* About and Expertise section */
+/*******************************/
+.aboutAndExpertise {
+	border-bottom: 1px solid var(--secondary-text-color);
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 2rem;
+
+	@media (min-width: 600px) {
+		flex-direction: row;
+	}
+}
+
+.about {
+	@media (min-width: 600px) {
+		padding-right: 2rem;
+	}
+}
+
+.about,
+.expertise {
+	width: 100%;
+
+	.sectionSubHeading {
+		margin: 1rem 0;
+	}
+
+	@media (min-width: 600px) {
+		width: 50%;
+	}
+}
+
+.expertiseList {
+	padding: 0;
+}
+
+.expertiseItem {
+	padding-bottom: 2rem;
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	gap: 1rem;
+	margin-bottom: 2rem;
+
+	&:not(:last-child) {
+		border-bottom: 1px solid var(--secondary-text-color);
+	}
+
+	img {
+		height: 3rem;
+		width: 3rem;
+		flex-shrink: 0;
+	}
+
+	.text-content {
+		display: flex;
+		flex-direction: column;
+		flex: 1;
+	}
+
+	.expertiseItemTitle {
+		margin: 0 0 0.5rem 0;
+		font-family: var(--secondary-font-family);
+		font-size: 1.5rem;
+	}
+
+	p {
+		margin: 0;
+		line-height: 1.5;
+	}
+}
+
+/************************/
+/* Contact form section */
+/************************/
+.contactForm {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	min-width: 50vw;
 }
 
 .formField {

@@ -17,6 +17,11 @@
 		<title>Hector Coronado | Software Engineer</title>
 		<link rel="stylesheet" href="reset.css" />
 		<link rel="stylesheet" href="style.css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Karla&family=Space+Mono&display=swap"
+			rel="stylesheet" />
 		<script src="index.js" defer></script>
 	</head>
 	<body class="body">
@@ -33,64 +38,109 @@
 		<main class="main">
 			<section class="hero">
 				<h1 class="mainTitle">I'm Hector Coronado<br />Frontend Engineer</h1>
-				<p class="technologiesTitle">Technologies I use</p>
+				<p class="technologiesTitle">technologies i use</p>
 				<div class="scrollWrapper">
 					<div class="scrollContainer" id="scrollContainer">
 						<ul class="technologiesList" id="infiniteList">
-						<li>HTML</li>
-						<li>CSS</li>
-						<li>JavaScript</li>
-						<li>TypeScript</li>
-						<li>React</li>
-						<li>Next.js</li>
-						<li>Python</li>
-						<li>Django</li>
-						<li>Node.js</li>
-						<li>Express</li>
-						<li>MongoDB</li>
-						<li>PostgreSQL</li>
-						<li>Git</li>
-						<li>AWS</li>
+							<li>HTML</li>
+							<li>CSS</li>
+							<li>JavaScript</li>
+							<li>TypeScript</li>
+							<li>React</li>
+							<li>Next.js</li>
+							<li>Python</li>
+							<li>Django</li>
+							<li>Node.js</li>
+							<li>Express</li>
+							<li>MongoDB</li>
+							<li>PostgreSQL</li>
+							<li>Git</li>
+							<li>AWS</li>
 						</ul>
 					</div>
 				</div>
 			</section>
-			<section class="about">
-				<h2>About Me</h2>
-				<p>
-					I'm a frontend engineer with a passion for building user-friendly and
-					efficient interfaces. I'm a quick learner and I'm always looking for
-					new challenges.
-				</p>
-			</section>
-			<section class="services">
-				<h2>Services</h2>
-			<ul class="list">
-				<li>
-					Performance optimization — I believe every millisecond matters. Fast
-					interfaces aren't a luxury; they're a necessity.
-				</li>
-				<li>
-					Accessibility first — Building for everyone isn't optional. I create
-					interfaces that work beautifully for all users, regardless of ability.
-				</li>
-				<li>
-					User-centered design — I don't just write code; I solve real problems.
-					The best interfaces feel intuitive because they were built with
-					empathy and intention.
-				</li>
-			</ul>
-			<h2>What I'm looking for:</h2>
-			<p>
-				A team that values quality, a product that makes a difference, and an
-				opportunity to build something meaningful.
-			</p>
-			<p>
-				If your team is hiring or you know someone who is, I'd love to connect.
-				Let's build something great together!
-			</p>
+			<div class="aboutAndExpertise">
+				<section class="about">
+					<h2 class="sectionSubHeading">About Me</h2>
+					<p>
+						I'm a frontend engineer with a passion for building user-friendly
+						and efficient interfaces. I'm a quick learner and I'm always looking
+						for new challenges.
+					</p>
+					<h2 class="sectionSubHeading">I'm looking for</h2>
+					<p>
+						A team that values quality, a product that makes a difference, and
+						an opportunity to build something meaningful.
+					</p>
+					<br />
+					<p>
+						If your team is hiring or you know someone who is, I'd love to
+						connect. Let's build something great together!
+					</p>
+				</section>
+				<section class="expertise">
+					<h2 class="sectionSubHeading">Expertise</h2>
+					<ul class="expertiseList">
+						<li class="expertiseItem">
+							<img src="assets/code.svg" alt="" role="presentation" />
+							<div class="text-content">
+								<h3 class="expertiseItemTitle">Frontend Dev</h3>
+								<p>
+									I craft responsive,user-friendly web applications by
+									transforming designs into optimized code with modern frontend
+									technologies.
+								</p>
+							</div>
+						</li>
+						<li class="expertiseItem">
+							<img src="assets/database.svg" alt="" role="presentation" />
+							<div class="text-content">
+								<h3 class="expertiseItemTitle">Backend Dev</h3>
+								<p>
+									I build robust server-side applications, APIs, and database
+									solutions that power dynamic, data-driven websites
+									efficiently.
+								</p>
+							</div>
+						</li>
+						<li class="expertiseItem">
+							<img src="assets/speed.svg" alt="" role="presentation" />
+							<div class="text-content">
+								<h3 class="expertiseItemTitle">Performance Optimization</h3>
+								<p>
+									I believe every millisecond matters. Fast interfaces aren't a
+									luxury; they're a necessity.
+								</p>
+							</div>
+						</li>
+						<li class="expertiseItem">
+							<img src="assets/accessibility.svg" alt="" role="presentation" />
+							<div class="text-content">
+								<h3 class="expertiseItemTitle">Accessibility First</h3>
+								<p>
+									Building for everyone isn't optional. I create interfaces that
+									work beautifully for all users, regardless of ability.
+								</p>
+							</div>
+						</li>
+						<li class="expertiseItem">
+							<img src="assets/person.svg" alt="" role="presentation" />
+							<div class="text-content">
+								<h3 class="expertiseItemTitle">User-centered Design</h3>
+								<p>
+									I don't just write code; I solve real problems. The best
+									interfaces feel intuitive because they were built with empathy
+									and intention.
+								</p>
+							</div>
+						</li>
+					</ul>
+				</section>
+			</div>
+
 			<form class="contactForm" id="contactForm">
-				<h2>Contact Me</h2>
+				<h2 class="sectionSubHeading">Contact Me</h2>
 
 				<label for="name">Name</label>
 				<input class="formField" type="text" id="name" name="name" required />
