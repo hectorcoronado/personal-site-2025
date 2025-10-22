@@ -188,6 +188,7 @@
 	border-bottom: 1px solid var(--secondary-text-color);
 	display: flex;
 	flex-direction: column;
+	justify-content: space-between;
 	margin-bottom: 2rem;
 
 	@media (min-width: 600px) {
@@ -210,7 +211,7 @@
 	}
 
 	@media (min-width: 600px) {
-		width: 50%;
+		width: 48%;
 	}
 }
 
@@ -261,26 +262,66 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: center;
-	min-width: 50vw;
+	justify-content: space-between;
+	padding-bottom: 2rem;
+
+	@media (min-width: 600px) {
+		flex-direction: row;
+	}
+}
+
+.contactFormPrompt,
+.contactFormFields {
+	width: 100%;
+
+	@media (min-width: 600px) {
+		width: 48%;
+	}
+}
+
+.contactFormPrompt {
+	margin-bottom: 2rem;
+	@media (min-width: 600px) {
+		margin-bottom: 0;
+	}
+}
+
+.contactFormFields {
+	border: 1px solid var(--secondary-text-color);
+	padding: 1rem;
+	border-radius: 0.5rem;
 }
 
 .formField {
+	background-color: rgb(255 255 255 / 0.95);
+	border: none;
+	border-radius: 0.5rem;
+	margin-bottom: 1rem;
+	padding: 0.35rem;
 	width: 100%;
 }
 
 .formButton {
-	width: 100%;
-	padding: 1rem;
+	background-image: linear-gradient(
+		to right,
+		#da22ff 0%,
+		#9733ee 51%,
+		#da22ff 100%
+	);
+	background-size: 200% auto;
 	border: none;
 	border-radius: 0.5rem;
-	background-color: #000;
-	color: #fff;
+	box-shadow: 0 0 3px #eee;
+	color: var(--main-text-color);
 	cursor: pointer;
 	margin-top: 1rem;
-	transition: transform 0.2s ease-in-out;
+	padding: 1rem;
+	transition: 0.5s ease-in-out;
+	width: 100%;
 }
 
 .formButton:hover {
-	transform: scale(1.01);
+	background-position: right center;
+	text-decoration: underline;
+	text-underline-offset: 3px;
 }
