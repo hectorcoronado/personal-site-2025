@@ -4,7 +4,6 @@ import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import rateLimit from 'express-rate-limit';
 import xssFilters from 'xss-filters';
-import path from 'path';
 import fs from 'fs';
 import { marked } from 'marked';
 
@@ -48,12 +47,12 @@ transporter.verify((error, success) => {
 });
 
 // Rate limiting, 5 requests per 15 minutes per IP
-const limiter = rateLimit({
+const emailLimiter = rateLimit({
 	windowMs: 15 * 60 * 1000, // 15 minutes
 	max: 5, // limit each IP to 5 requests per windowMs
 });
 
-app.use('/send-email', limiter);
+app.use('/send-email', emailLimiter);
 
 // Handle form submission
 app.post('/send-email', async (req, res) => {
@@ -93,6 +92,13 @@ app.post('/send-email', async (req, res) => {
 		res.status(500).json({ error: 'Failed to send email' });
 	}
 });
+
+const resumeLimiter = rateLimit({
+	windowMs: 1 * 60 * 1000, // 1 minute
+	max: 5, // limit each IP to 5 requests per windowMs
+});
+
+app.use('/resume', resumeLimiter);
 
 app.get('/resume', (req, res) => {
 	const filePath = 'public/assets/resume.md';
