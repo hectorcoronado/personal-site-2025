@@ -3,14 +3,68 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta
+			name="description"
+			content="Hector Coronado Frontend Engineer personal website" />
+		<meta
+			name="keywords"
+			content="Hector Coronado, Software Engineer, Portfolio, Web Developer" />
+		<meta name="author" content="Hector Coronado" />
+		<meta name="robots" content="index, follow" />
+		<meta name="googlebot" content="index, follow" />
+		<meta name="bingbot" content="index, follow" />
+		<meta name="yandexbot" content="index, follow" />
 		<title>Hector Coronado | Software Engineer</title>
 		<link rel="stylesheet" href="reset.css" />
 		<link rel="stylesheet" href="style.css" />
+		<script src="index.js" defer></script>
 	</head>
 	<body class="body">
+		<header class="header">
+			<nav class="headerNav">
+				<a class="headerName" href="/">Hector</a>
+				<ul class="headerLinksList">
+					<li><a class="headerLink" href="#about">About</a></li>
+					<li><a class="headerLink" href="/resume">Resume</a></li>
+					<li><a class="headerLink" href="#contact">Contact</a></li>
+				</ul>
+			</nav>
+		</header>
 		<main class="main">
-			<h1>Hi, I'm Hector and I'm a Frontend Engineer</h1>
-			<h2>What I bring to the table:</h2>
+			<section class="hero">
+				<h1 class="mainTitle">I'm Hector Coronado<br />Frontend Engineer</h1>
+				<p class="technologiesTitle">Technologies I use</p>
+				<div class="scrollWrapper">
+					<div class="scrollContainer" id="scrollContainer">
+						<ul class="technologiesList" id="infiniteList">
+						<li>HTML</li>
+						<li>CSS</li>
+						<li>JavaScript</li>
+						<li>TypeScript</li>
+						<li>React</li>
+						<li>Next.js</li>
+						<li>Python</li>
+						<li>Django</li>
+						<li>Node.js</li>
+						<li>Express</li>
+						<li>MongoDB</li>
+						<li>PostgreSQL</li>
+						<li>Git</li>
+						<li>AWS</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+			<section class="about">
+				<h2>About Me</h2>
+				<p>
+					I'm a frontend engineer with a passion for building user-friendly and
+					efficient interfaces. I'm a quick learner and I'm always looking for
+					new challenges.
+				</p>
+			</section>
+			<section class="services">
+				<h2>Services</h2>
 			<ul class="list">
 				<li>
 					Performance optimization — I believe every millisecond matters. Fast
@@ -35,7 +89,7 @@
 				If your team is hiring or you know someone who is, I'd love to connect.
 				Let's build something great together!
 			</p>
-			<form id="contactForm">
+			<form class="contactForm" id="contactForm">
 				<h2>Contact Me</h2>
 
 				<label for="name">Name</label>
@@ -69,47 +123,5 @@
 				<div id="status"></div>
 			</form>
 		</main>
-		<script>
-			document
-				.getElementById('contactForm')
-				.addEventListener('submit', async (e) => {
-					e.preventDefault();
-
-					const formData = {
-						name: document.getElementById('name').value,
-						email: document.getElementById('email').value,
-						subject: document.getElementById('subject').value,
-						message: document.getElementById('message').value,
-					};
-
-					const statusDiv = document.getElementById('status');
-					statusDiv.textContent = 'Sending...';
-
-					try {
-						const response = await fetch('/send-email', {
-							method: 'POST',
-							headers: {
-								'Content-Type': 'application/json',
-							},
-							body: JSON.stringify(formData),
-						});
-
-						const result = await response.json();
-
-						if (response.ok) {
-							statusDiv.textContent = 'Message sent successfully!';
-							statusDiv.style.color = 'green';
-							document.getElementById('contactForm').reset();
-						} else {
-							statusDiv.textContent =
-								'Failed to send message. Please try again.';
-							statusDiv.style.color = 'red';
-						}
-					} catch (error) {
-						statusDiv.textContent = 'Error sending message.';
-						statusDiv.style.color = 'red';
-					}
-				});
-		</script>
 	</body>
 </html>
