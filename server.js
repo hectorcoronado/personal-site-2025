@@ -4,6 +4,9 @@ import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import rateLimit from 'express-rate-limit';
 import xssFilters from 'xss-filters';
+import path from 'path';
+import fs from 'fs';
+import { marked } from 'marked';
 
 dotenv.config();
 
@@ -14,6 +17,8 @@ const PORT = process.env.PORT || 3000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
+app.set('view engine', 'ejs');
+app.set('views', './public');
 
 // CSP (content security policy) to prevent xss attacks (along with xss-filters)
 app.use((req, res, next) => {
@@ -87,6 +92,19 @@ app.post('/send-email', async (req, res) => {
 		console.error('Error sending email:', error);
 		res.status(500).json({ error: 'Failed to send email' });
 	}
+});
+
+app.get('/resume', (req, res) => {
+	const filePath = 'public/assets/resume.md';
+
+	fs.readFile(filePath, 'utf8', (err, data) => {
+		if (err) {
+			return res.status(404).send('Markdown file not found');
+		}
+
+		const htmlContent = marked.parse(data);
+		res.render('resume', { content: htmlContent });
+	});
 });
 
 // Start server

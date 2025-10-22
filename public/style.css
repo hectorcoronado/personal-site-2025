@@ -11,11 +11,15 @@
 		'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
+html {
+	scroll-behavior: smooth;
+}
+
 .body {
-	font-family: var(--main-font-family);
-	font-size: 1.2rem;
 	background-color: var(--main-bg-color);
 	color: var(--main-text-color);
+	font-family: var(--main-font-family);
+	font-size: 1.2rem;
 }
 
 .sectionSubHeading {
