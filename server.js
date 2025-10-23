@@ -10,7 +10,7 @@ import { marked } from 'marked';
 dotenv.config();
 
 const app = express();
-app.set('trust proxy', 2 /* number of proxies between user and server */);
+app.set('trust proxy', 2); /* 2: number of proxies between user and server */
 const PORT = process.env.PORT || 3000;
 
 // Middleware
@@ -114,9 +114,13 @@ app.get('/resume', (req, res) => {
 	});
 });
 
-app.get('/ip', (request, response) => {
-	response.send(request.ip);
-});
+/**
+ * uncomment if x-forwarded-for error in DigitalOcean logs is present.
+ * @see https://express-rate-limit.mintlify.app/guides/troubleshooting-proxy-issues
+ */
+// app.get('/ip', (request, response) => {
+// 	response.send(request.ip);
+// });
 
 // Start server
 app.listen(PORT, () => {
