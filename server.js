@@ -10,6 +10,7 @@ import { marked } from 'marked';
 dotenv.config();
 
 const app = express();
+app.set('trust proxy', 1 /* number of proxies between user and server */);
 const PORT = process.env.PORT || 3000;
 
 // Middleware
@@ -111,6 +112,10 @@ app.get('/resume', (req, res) => {
 		const htmlContent = marked.parse(data);
 		res.render('resume', { content: htmlContent });
 	});
+});
+
+app.get('/ip', (request, response) => {
+	response.send(request.ip);
 });
 
 // Start server
