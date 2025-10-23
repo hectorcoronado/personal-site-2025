@@ -1,26 +1,22 @@
-**Hector Coronado | Frontend Engineer**
+# Hector Coronado | Frontend Engineer
 
 ---
 
-E-mail: [hectorcoronado.developer@gmail.com](mailto:hector.coronado@autodesk.com)
-
-LinkedIn: [www.linkedin.com/in/hectorcoronado](http://www.linkedin.com/in/hectorcoronado)
-
-GitHub: [https://github.com/hectorcoronado](https://github.com/hectorcoronado)
-
-Website: [https://www.hectorcoronado.com](https://www.hectorcoronado.com)
-
-Tel: 956-607-5525
+|               |                                                                                 |
+| ------------- | ------------------------------------------------------------------------------- |
+| **E-mail:**   | [hectorcoronado.developer@gmail.com](mailto:hector.coronado@autodesk.com)       |
+| **LinkedIn:** | [www.linkedin.com/in/hectorcoronado](http://www.linkedin.com/in/hectorcoronado) |
+| **GitHub:**   | [https://github.com/hectorcoronado](https://github.com/hectorcoronado)          |
+| **Website:**  | [https://www.hectorcoronado.com](https://www.hectorcoronado.com)                |
 
 ---
 
-Languages: HTML, CSS, JavaScript/ES6, Python
-
-Skills: React, Express, Node, Next.js, Django, a11y
-
-Test Suites: Playwright, Jest, Cypress, Applitools, RTL
-
-Other: Git, AWS
+|                  |                                             |
+| ---------------- | ------------------------------------------- |
+| **Languages:**   | HTML, CSS, JavaScript/ES6, Python           |
+| **Skills:**      | React, Express, Node, Next.js, Django, a11y |
+| **Test Suites:** | Playwright, Jest, Cypress, Applitools, RTL  |
+| **Other:**       | Git, AWS                                    |
 
 ---
 
