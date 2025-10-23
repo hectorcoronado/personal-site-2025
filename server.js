@@ -10,7 +10,7 @@ import { marked } from 'marked';
 dotenv.config();
 
 const app = express();
-app.set('trust proxy', 1 /* number of proxies between user and server */);
+app.set('trust proxy', 2 /* number of proxies between user and server */);
 const PORT = process.env.PORT || 3000;
 
 // Middleware
