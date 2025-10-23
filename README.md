@@ -3,3 +3,11 @@
 This app is built with HTML, CSS, JS and a touch of EJS.
 
 🚀 https://www.hectorcoronado.com 🧑🏻‍💻
+
+Pending:
+
+- [ ] minify everything
+- [ ] improve loading/error/success ui
+- [ ] disable button while submit resolves
+- [ ] favicon right https://dev.to/robole/how-to-add-a-favicon-to-your-website-5agl
+- [ ] seo audit
