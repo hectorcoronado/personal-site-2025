@@ -24,7 +24,6 @@ function createProductionTemplate(inputFile, outputFile, replacements = {}) {
 
 	// Create production version with replacements
 	let productionContent = originalContent
-		.replace('href="reset.css"', '') // Remove reset.css (included in combined CSS)
 		.replace(/\s+/g, ' ') // Remove extra whitespace
 		.trim();
 
