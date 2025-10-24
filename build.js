@@ -125,6 +125,26 @@ try {
 		}
 	});
 	console.log('✅ Templates moved to public directory');
+
+	// Copy minified assets to public directory
+	const minifiedAssets = ['styles.min.css', 'index.min.js'];
+	minifiedAssets.forEach((file) => {
+		const sourcePath = path.join(distDir, file);
+		const destPath = path.join(publicDir, file);
+		if (fs.existsSync(sourcePath)) {
+			fs.copyFileSync(sourcePath, destPath);
+			fs.unlinkSync(sourcePath); // Remove from root dist directory
+		}
+	});
+	console.log('✅ Minified assets moved to public directory');
+
+	// Copy manifest.json to public directory
+	const manifestSource = path.join(__dirname, 'public', 'manifest.json');
+	const manifestDest = path.join(publicDir, 'manifest.json');
+	if (fs.existsSync(manifestSource)) {
+		fs.copyFileSync(manifestSource, manifestDest);
+		console.log('✅ Manifest.json copied to public directory');
+	}
 } catch (error) {
 	console.error('❌ Public directory creation failed:', error.message);
 }
