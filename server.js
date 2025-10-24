@@ -122,6 +122,10 @@ app.get('/resume', (req, res) => {
 // 	response.send(request.ip);
 // });
 
+app.all('/{*any}', (req, res, next) => {
+	res.status(404).render('404');
+});
+
 // Start server
 app.listen(PORT, () => {
 	console.log(`Server running on http://localhost:${PORT} 🚀`);
