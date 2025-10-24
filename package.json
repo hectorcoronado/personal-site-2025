@@ -21,8 +21,13 @@
 	"main": "server.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"build": "node server.js",
-		"dev": "nodemon --watch '**/*'"
+		"build": "node build.js",
+		"build:prod": "npm run prebuild && npm run build && cd dist && npm install --production && npm start:prod",
+		"start": "node server.js",
+		"start:prod": "node server.min.js",
+		"dev": "nodemon --watch '**/*'",
+		"clean": "rm -rf dist",
+		"prebuild": "npm run clean"
 	},
 	"dependencies": {
 		"body-parser": "^2.2.0",
@@ -35,7 +40,11 @@
 		"xss-filters": "^1.2.7"
 	},
 	"devDependencies": {
-		"nodemon": "^3.1.10"
+		"clean-css-cli": "^5.6.3",
+		"esbuild": "^0.25.11",
+		"html-minifier-terser": "^7.2.0",
+		"nodemon": "^3.1.10",
+		"terser": "^5.44.0"
 	},
 	"nodemonConfig": {
 		"ext": "js,html,css,svg,json"

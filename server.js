@@ -24,7 +24,7 @@ app.set('views', './public');
 app.use((req, res, next) => {
 	res.setHeader(
 		'Content-Security-Policy',
-		"default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self'"
+		"default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; img-src 'self'; font-src 'self' https://fonts.gstatic.com; connect-src 'self'"
 	);
 	next();
 });
@@ -96,7 +96,7 @@ app.post('/send-email', async (req, res) => {
 
 const resumeLimiter = rateLimit({
 	windowMs: 1 * 60 * 1000, // 1 minute
-	max: 5, // limit each IP to 5 requests per windowMs
+	max: 10, // limit each IP to 10 requests per windowMs
 });
 
 app.use('/resume', resumeLimiter);
