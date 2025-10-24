@@ -17,37 +17,22 @@ if (!fs.existsSync(distDir)) {
 
 console.log('🚀 Starting production build...\n');
 
-// 1. Minify CSS files
-console.log('📝 Minifying CSS files...');
+// 1. Copy CSS files (no minification)
+console.log('📝 Copying CSS files...');
 try {
 	const cssFiles = buildConfig.files.css;
-	const cssOutput = path.join(distDir, 'styles.min.css');
 
-	// Combine all CSS files into one
-	let combinedCSS = '';
 	cssFiles.forEach((file) => {
-		const filePath = path.join(__dirname, buildConfig.input.css, file);
-		if (fs.existsSync(filePath)) {
-			combinedCSS += fs.readFileSync(filePath, 'utf8') + '\n';
+		const sourcePath = path.join(__dirname, buildConfig.input.css, file);
+		const destPath = path.join(distDir, file);
+
+		if (fs.existsSync(sourcePath)) {
+			fs.copyFileSync(sourcePath, destPath);
+			console.log(`✅ CSS copied: ${destPath}`);
 		}
 	});
-
-	// Simple CSS minification (remove comments, extra whitespace, etc.)
-	let minifiedCSS = combinedCSS
-		.replace(/\/\*[\s\S]*?\*\//g, '') // Remove comments
-		.replace(/\s+/g, ' ') // Replace multiple spaces with single space
-		.replace(/\s*{\s*/g, '{') // Remove spaces around braces
-		.replace(/;\s*/g, ';') // Remove spaces after semicolons
-		.replace(/\s*}\s*/g, '}') // Remove spaces around closing braces
-		.replace(/\s*,\s*/g, ',') // Remove spaces around commas
-		.replace(/\s*:\s*/g, ':') // Remove spaces around colons
-		.replace(/\s*;\s*/g, ';') // Remove spaces around semicolons
-		.trim();
-
-	fs.writeFileSync(cssOutput, minifiedCSS);
-	console.log(`✅ CSS minified: ${cssOutput}`);
 } catch (error) {
-	console.error('❌ CSS minification failed:', error.message);
+	console.error('❌ CSS copy failed:', error.message);
 }
 
 // 2. Minify JavaScript files
@@ -126,9 +111,12 @@ try {
 	});
 	console.log('✅ Templates moved to public directory');
 
-	// Copy minified assets to public directory
-	const minifiedAssets = ['styles.min.css', 'index.min.js'];
-	minifiedAssets.forEach((file) => {
+	// Copy CSS and JS assets to public directory
+	const cssFiles = buildConfig.files.css;
+	const jsFiles = buildConfig.files.js;
+
+	// Copy CSS files
+	cssFiles.forEach((file) => {
 		const sourcePath = path.join(distDir, file);
 		const destPath = path.join(publicDir, file);
 		if (fs.existsSync(sourcePath)) {
@@ -136,7 +124,18 @@ try {
 			fs.unlinkSync(sourcePath); // Remove from root dist directory
 		}
 	});
-	console.log('✅ Minified assets moved to public directory');
+
+	// Copy minified JS files
+	jsFiles.forEach((file) => {
+		const minifiedFile = file.replace('.js', '.min.js');
+		const sourcePath = path.join(distDir, minifiedFile);
+		const destPath = path.join(publicDir, minifiedFile);
+		if (fs.existsSync(sourcePath)) {
+			fs.copyFileSync(sourcePath, destPath);
+			fs.unlinkSync(sourcePath); // Remove from root dist directory
+		}
+	});
+	console.log('✅ CSS and JS assets moved to public directory');
 
 	// Copy manifest.json to public directory
 	const manifestSource = path.join(__dirname, 'public', 'manifest.json');
@@ -191,8 +190,8 @@ try {
 console.log('\n🎉 Production build completed successfully!');
 console.log(`📁 Output directory: ${distDir}`);
 console.log('\n📊 Build summary:');
-console.log('- CSS: Combined and minified into styles.min.css');
+console.log('- CSS: Copied without minification');
 console.log('- JavaScript: Minified with Terser');
 console.log('- Server: Minified with Terser');
 console.log('- HTML: Minified with html-minifier-terser');
-console.log('- Assets: Copied to dist/assets/');
+console.log('- Assets: Copied to dist/public/');

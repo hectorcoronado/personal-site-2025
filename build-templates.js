@@ -28,12 +28,10 @@ function createProductionTemplate(inputFile, outputFile, replacements = {}) {
 		.replace(/\s+/g, ' ') // Remove extra whitespace
 		.trim();
 
-	// Apply CSS replacement
+	// Apply CSS replacement (keep original CSS files)
 	if (replacements.css) {
-		productionContent = productionContent.replace(
-			`href="${replacements.css}"`,
-			'href="styles.min.css"'
-		);
+		// Keep the original CSS file references
+		// No replacement needed - CSS files are copied as-is
 	}
 
 	// Apply JS replacement
