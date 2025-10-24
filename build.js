@@ -33,22 +33,19 @@ try {
 		}
 	});
 
-	// Minify using clean-css programmatically
-	const cleanCSS = new CleanCSS({
-		level: 2,
-		format: {
-			breaks: false,
-			semicolons: false,
-		},
-	});
+	// Simple CSS minification (remove comments, extra whitespace, etc.)
+	let minifiedCSS = combinedCSS
+		.replace(/\/\*[\s\S]*?\*\//g, '') // Remove comments
+		.replace(/\s+/g, ' ') // Replace multiple spaces with single space
+		.replace(/\s*{\s*/g, '{') // Remove spaces around braces
+		.replace(/;\s*/g, ';') // Remove spaces after semicolons
+		.replace(/\s*}\s*/g, '}') // Remove spaces around closing braces
+		.replace(/\s*,\s*/g, ',') // Remove spaces around commas
+		.replace(/\s*:\s*/g, ':') // Remove spaces around colons
+		.replace(/\s*;\s*/g, ';') // Remove spaces around semicolons
+		.trim();
 
-	const result = cleanCSS.minify(combinedCSS);
-
-	if (result.errors.length > 0) {
-		console.warn('⚠️ CSS warnings:', result.warnings);
-	}
-
-	fs.writeFileSync(cssOutput, result.styles);
+	fs.writeFileSync(cssOutput, minifiedCSS);
 	console.log(`✅ CSS minified: ${cssOutput}`);
 } catch (error) {
 	console.error('❌ CSS minification failed:', error.message);
@@ -98,20 +95,39 @@ try {
 	console.error('❌ HTML template creation failed:', error.message);
 }
 
-// 5. Copy assets
-console.log('\n📁 Copying assets...');
+// 5. Create public directory structure and copy assets
+console.log('\n📁 Creating public directory structure...');
 try {
+	// Create public directory in dist
+	const publicDir = path.join(distDir, 'public');
+	if (!fs.existsSync(publicDir)) {
+		fs.mkdirSync(publicDir, { recursive: true });
+	}
+
+	// Copy assets to public/assets
 	const assetsSource = path.join(__dirname, 'public', 'assets');
-	const assetsDest = path.join(distDir, 'assets');
+	const assetsDest = path.join(publicDir, 'assets');
 
 	if (fs.existsSync(assetsSource)) {
 		execSync(`cp -r "${assetsSource}" "${assetsDest}"`, {
 			stdio: 'inherit',
 		});
-		console.log('✅ Assets copied');
+		console.log('✅ Assets copied to public/assets');
 	}
+
+	// Copy HTML and EJS templates to public directory
+	const templateFiles = ['index.html', '404.ejs', 'resume.ejs'];
+	templateFiles.forEach((file) => {
+		const sourcePath = path.join(distDir, file);
+		const destPath = path.join(publicDir, file);
+		if (fs.existsSync(sourcePath)) {
+			fs.copyFileSync(sourcePath, destPath);
+			fs.unlinkSync(sourcePath); // Remove from root dist directory
+		}
+	});
+	console.log('✅ Templates moved to public directory');
 } catch (error) {
-	console.error('❌ Asset copying failed:', error.message);
+	console.error('❌ Public directory creation failed:', error.message);
 }
 
 // 6. Create production package.json
@@ -124,6 +140,7 @@ try {
 		...packageJson,
 		scripts: {
 			start: 'node server.min.js',
+			'start:prod': 'node server.min.js',
 		},
 		devDependencies: undefined,
 		nodemonConfig: undefined,
@@ -160,7 +177,3 @@ console.log('- JavaScript: Minified with Terser');
 console.log('- Server: Minified with Terser');
 console.log('- HTML: Minified with html-minifier-terser');
 console.log('- Assets: Copied to dist/assets/');
-console.log('\n🚀 To run production build:');
-console.log(`   cd ${buildConfig.output}`);
-console.log('   npm install --production');
-console.log('   npm start');
