@@ -42,7 +42,7 @@ body {
 }
 
 .main {
-	max-width: 800px;
+	max-width: 1000px;
 	margin: 50px auto;
 	padding: 20px;
 	line-height: 1.6;
@@ -55,5 +55,9 @@ body {
 			text-decoration: underline;
 			text-underline-offset: 3px;
 		}
+	}
+
+	li {
+		list-style: disc;
 	}
 }
