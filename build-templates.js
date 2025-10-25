@@ -56,6 +56,11 @@ function createProductionTemplate(inputFile, outputFile, replacements = {}) {
 			`src="${replacements.js}"`,
 			`src="${replacements.js.replace('.js', '.min.js')}"`
 		);
+		// Also update preload hints for JS files
+		productionContent = productionContent.replace(
+			`href="${replacements.js}"`,
+			`href="${replacements.js.replace('.js', '.min.js')}"`
+		);
 	}
 
 	// Write the production file
