@@ -87,15 +87,23 @@ document.addEventListener('DOMContentLoaded', () => {
 		});
 
 		// Add mouse wheel support for better scrolling
-		container.addEventListener('wheel', (e) => {
-			e.preventDefault();
-			container.scrollLeft += e.deltaY;
-		});
+		container.addEventListener(
+			'wheel',
+			(e) => {
+				e.preventDefault();
+				container.scrollLeft += e.deltaY;
+			},
+			{ passive: true }
+		);
 
 		// Add touch support for mobile
-		container.addEventListener('touchstart', (e) => {
-			container.style.scrollBehavior = 'auto';
-		});
+		container.addEventListener(
+			'touchstart',
+			(e) => {
+				container.style.scrollBehavior = 'auto';
+			},
+			{ passive: true }
+		);
 
 		container.addEventListener('touchend', (e) => {
 			container.style.scrollBehavior = 'auto';
