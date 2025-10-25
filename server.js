@@ -122,6 +122,12 @@ app.get('/resume', (req, res) => {
 // 	response.send(request.ip);
 // });
 
+app.get('/sitemap.xml', (req, res) => {
+	const sitemap = fs.readFileSync('sitemap.xml', 'utf8');
+	res.set('Content-Type', 'application/xml');
+	res.send(sitemap);
+});
+
 app.all('/{*any}', (req, res, next) => {
 	res.status(404).render('404');
 });
