@@ -1,11 +1,51 @@
 body {
+	background-color: var(--main-bg-color);
+	color: var(--main-text-color);
+	font-family: var(--main-font-family);
+}
+
+.header {
+	background-color: var(--secondary-bg-color);
+	display: flex;
+	font-family: var(--secondary-font-family);
+	font-size: 1.2rem;
+	height: 3.5rem;
+	width: 100%;
+
+	.headerNav {
+		display: flex;
+		align-items: center;
+		width: 100%;
+		justify-content: space-around;
+	}
+
+	.headerName {
+		font-weight: bold;
+	}
+
+	.headerLinksList {
+		display: flex;
+		align-items: center;
+	}
+
+	.headerName,
+	.headerLink {
+		color: var(--main-text-color);
+		text-decoration: none;
+		padding-right: 0.75rem;
+
+		&:hover {
+			text-decoration: underline;
+			text-underline-offset: 3px;
+		}
+	}
+}
+
+.main {
 	max-width: 800px;
 	margin: 50px auto;
 	padding: 20px;
-	font-family: var(--main-font-family);
 	line-height: 1.6;
-	background-color: var(--main-bg-color);
-	color: var(--main-text-color);
 
 	a {
 		color: var(--main-text-color);

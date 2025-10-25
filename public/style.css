@@ -17,6 +17,7 @@ html {
 .header {
 	background-color: var(--secondary-bg-color);
 	display: flex;
+	font-family: var(--secondary-font-family);
 	height: 3.5rem;
 	width: 100%;
 
