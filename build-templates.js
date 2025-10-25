@@ -16,7 +16,7 @@ const __dirname = path.dirname(__filename);
  * @param {string} replacements.js - JS file to replace (optional, e.g., 'index.js')
  */
 function createProductionTemplate(inputFile, outputFile, replacements = {}) {
-	const distDir = path.join(__dirname, 'dist');
+	const publicDir = path.join(__dirname, 'dist', 'public');
 	const inputPath = path.join(__dirname, 'public', inputFile);
 
 	// Read the original file
@@ -42,7 +42,7 @@ function createProductionTemplate(inputFile, outputFile, replacements = {}) {
 	}
 
 	// Write the production file
-	fs.writeFileSync(path.join(distDir, outputFile), productionContent);
+	fs.writeFileSync(path.join(publicDir, outputFile), productionContent);
 	console.log(`✅ Production ${outputFile} template created`);
 }
 

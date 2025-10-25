@@ -6,7 +6,7 @@ This app is built with HTML, CSS, JS and a touch of EJS.
 
 Pending:
 
-- [ ] minify everything
+- [x] minify js,html & css
 - [ ] improve loading/error/success ui
 - [x] 400 error route & ui
 - [ ] disable button while submit resolves

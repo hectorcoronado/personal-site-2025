@@ -1,4 +1,5 @@
 // Build configuration for production minification
+// CSS minification now uses cssnano with advanced preset
 export const buildConfig = {
 	// Input directories
 	input: {
@@ -22,11 +23,11 @@ export const buildConfig = {
 	// Minification options
 	minify: {
 		css: {
-			level: 2, // Aggressive optimization
-			format: {
-				breaks: false,
-				semicolons: false,
-			},
+			preset: 'advanced', // Use cssnano's advanced preset for maximum optimization
+			plugins: [
+				// Additional cssnano plugins for advanced optimization
+				'cssnano-preset-advanced',
+			],
 		},
 		js: {
 			compress: {
@@ -52,11 +53,5 @@ export const buildConfig = {
 			minifyCSS: true,
 			minifyJS: true,
 		},
-	},
-
-	// Critical CSS extraction
-	critical: {
-		inline: true,
-		minify: true,
 	},
 };
