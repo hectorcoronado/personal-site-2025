@@ -131,6 +131,14 @@ async function build() {
 			fs.copyFileSync(sitemapSource, sitemapDest);
 			console.log('✅ Sitemap.xml copied to public directory');
 		}
+
+		// Copy favicon.ico to dist root (for /favicon.ico requests)
+		const faviconSource = path.join(__dirname, 'favicon.ico');
+		const faviconDest = path.join(distDir, 'favicon.ico');
+		if (fs.existsSync(faviconSource)) {
+			fs.copyFileSync(faviconSource, faviconDest);
+			console.log('✅ Favicon.ico copied to dist root');
+		}
 	} catch (error) {
 		console.error('❌ Asset copying failed:', error.message);
 	}
