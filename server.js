@@ -17,6 +17,7 @@ const PORT = process.env.PORT || 3000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
+app.use(express.static('.')); // Serve static files from root directory (for favicon.ico)
 app.set('view engine', 'ejs');
 app.set('views', './public');
 
