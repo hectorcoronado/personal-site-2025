@@ -144,6 +144,14 @@ try {
 		fs.copyFileSync(manifestSource, manifestDest);
 		console.log('✅ Manifest.json copied to public directory');
 	}
+
+	// Copy sitemap.xml to public directory
+	const sitemapSource = path.join(__dirname, 'sitemap.xml');
+	const sitemapDest = path.join(publicDir, 'sitemap.xml');
+	if (fs.existsSync(sitemapSource)) {
+		fs.copyFileSync(sitemapSource, sitemapDest);
+		console.log('✅ Sitemap.xml copied to public directory');
+	}
 } catch (error) {
 	console.error('❌ Public directory creation failed:', error.message);
 }
