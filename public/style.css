@@ -308,10 +308,34 @@ html {
 	padding: 1rem;
 	transition: 0.5s ease-in-out;
 	width: 100%;
+
+	&:disabled {
+		cursor: not-allowed;
+		opacity: 0.5;
+		filter: grayscale(100%);
+		text-decoration: none;
+	}
 }
 
 .formButton:hover {
 	background-position: right center;
 	text-decoration: underline;
 	text-underline-offset: 3px;
+}
+
+.status {
+	font-weight: bold;
+	height: 2rem;
+	margin-top: 1rem;
+	text-align: center;
+	opacity: 0;
+	transition: opacity 1s ease-in-out;
+
+	&.visible {
+		opacity: 1;
+	}
+
+	&.fade-out {
+		opacity: 0;
+	}
 }

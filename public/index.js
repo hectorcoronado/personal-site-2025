@@ -10,7 +10,12 @@ document.getElementById('contactForm').addEventListener('submit', async (e) => {
 	};
 
 	const statusDiv = document.getElementById('status');
-	statusDiv.textContent = 'Sending...';
+	statusDiv.classList.remove('fade-out');
+	statusDiv.classList.remove('visible');
+
+	const formButton = document.getElementById('formButton');
+	formButton.disabled = true;
+	formButton.textContent = 'Sending...';
 
 	try {
 		const response = await fetch('/send-email', {
@@ -24,12 +29,38 @@ document.getElementById('contactForm').addEventListener('submit', async (e) => {
 		const result = await response.json();
 
 		if (response.ok) {
-			statusDiv.textContent = 'Message sent successfully!';
-			statusDiv.style.color = 'green';
+			statusDiv.classList.remove('error');
+			statusDiv.classList.add('success');
+			statusDiv.textContent = '💌 Message sent!';
+			statusDiv.classList.add('visible');
 			document.getElementById('contactForm').reset();
+			formButton.disabled = false;
+			formButton.textContent = 'Send Message';
+
+			setTimeout(() => {
+				statusDiv.classList.remove('visible');
+				setTimeout(() => {
+					statusDiv.classList.add('fade-out');
+					statusDiv.classList.remove('success');
+					statusDiv.textContent = '';
+				}, 1000);
+			}, 6000);
 		} else {
-			statusDiv.textContent = 'Failed to send message. Please try again.';
-			statusDiv.style.color = 'red';
+			statusDiv.classList.remove('success');
+			statusDiv.classList.add('error');
+			statusDiv.textContent = '❌ Message failed!';
+			statusDiv.classList.add('visible');
+			formButton.disabled = false;
+			formButton.textContent = 'Send Message';
+
+			setTimeout(() => {
+				statusDiv.classList.remove('visible');
+				setTimeout(() => {
+					statusDiv.classList.add('fade-out');
+					statusDiv.classList.remove('error');
+					statusDiv.textContent = '';
+				}, 1000);
+			}, 6000);
 		}
 	} catch (error) {
 		statusDiv.textContent = 'Error sending message.';
