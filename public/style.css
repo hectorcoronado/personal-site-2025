@@ -61,28 +61,6 @@ html {
 /****************/
 /* hero section */
 /****************/
-.hero {
-	border-bottom: 1px solid var(--secondary-text-color);
-	padding-bottom: 1rem;
-	margin-bottom: 2rem;
-}
-
-.mainTitle {
-	/* responsive font sizing, 16px + 5% of viewport width*/
-	font-size: calc(1.75rem + 3vw);
-	font-family: var(--secondary-font-family);
-	height: 60vh;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	text-align: center;
-
-	@media (min-width: 600px) {
-		/* responsive font sizing with sensible min and max values */
-		font-size: clamp(1.5rem, 2vw + 3rem, 6rem);
-	}
-}
-
 .scrollWrapper {
 	position: relative;
 	width: 100%;
@@ -135,15 +113,14 @@ html {
 	position: relative;
 	scrollbar-width: none;
 
+	/* Hide scrollbar for webkit browsers */
 	&::-webkit-scrollbar {
-		height: 0;
-		width: 0;
 		display: none;
 	}
 }
 
 .technologiesTitle {
-	font-size: calc(1rem + 1vw);
+	font-size: calc(1.5vw + 1rem);
 	text-align: center;
 	font-variant: small-caps;
 	margin-bottom: 1rem;
@@ -171,6 +148,27 @@ html {
 	font-size: 18px;
 	min-width: 150px;
 	text-align: center;
+}
+.hero {
+	border-bottom: 1px solid var(--secondary-text-color);
+	padding-bottom: 1rem;
+	margin-bottom: 2rem;
+}
+
+.mainTitle {
+	/* responsive font sizing, 16px + 5% of viewport width*/
+	font-size: calc(1.75rem + 3vw);
+	font-family: var(--secondary-font-family);
+	height: 60vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+
+	@media (min-width: 600px) {
+		/* responsive font sizing with sensible min and max values */
+		font-size: clamp(1.5rem, 2vw + 3rem, 6rem);
+	}
 }
 
 /*******************************/

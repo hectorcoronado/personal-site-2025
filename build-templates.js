@@ -22,27 +22,10 @@ function createProductionTemplate(inputFile, outputFile, replacements = {}) {
 	// Read the original file
 	const originalContent = fs.readFileSync(inputPath, 'utf8');
 
-	// Read critical CSS for inlining
-	let criticalCSS = '';
-	if (inputFile === 'index.html') {
-		const criticalCSSPath = path.join(__dirname, 'public', 'critical.css');
-		if (fs.existsSync(criticalCSSPath)) {
-			criticalCSS = fs.readFileSync(criticalCSSPath, 'utf8');
-		}
-	}
-
 	// Create production version with replacements
 	let productionContent = originalContent
 		.replace(/\s+/g, ' ') // Remove extra whitespace
 		.trim();
-
-	// Inline critical CSS for index.html
-	if (inputFile === 'index.html' && criticalCSS) {
-		productionContent = productionContent.replace(
-			'<link rel="stylesheet" href="style.css" />',
-			`<style>${criticalCSS}</style><link rel="stylesheet" href="style.css" media="print" onload="this.media='all'" />`
-		);
-	}
 
 	// Apply CSS replacement (keep original CSS files)
 	if (replacements.css) {
