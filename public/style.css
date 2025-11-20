@@ -291,6 +291,33 @@ html {
 	width: 100%;
 }
 
+.textArea {
+	margin-bottom: 0;
+}
+
+.charCount {
+	float: right;
+
+	&.limit-near {
+		color: var(--warning-text-color);
+
+		&::before {
+			content: '🟠 ';
+		}
+	}
+
+	&.limit-exceeded {
+		color: var(--error-text-color);
+
+		&::before {
+			content: '🚨 ';
+		}
+	}
+
+	transition: color 0.3s ease-in-out;
+}
+
+
 .formButton {
 	background-image: linear-gradient(
 		to right,

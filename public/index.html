@@ -205,12 +205,13 @@
 
 					<label for="message">Message</label>
 					<textarea
-						class="formField"
+						class="formField textArea"
 						id="message"
 						name="message"
 						rows="6"
 						maxlength="500"
 						required></textarea>
+					<p aria-live="polite" id="charCount" class="charCount"><span id="charsLeft"></span> of 500 characters left.</p>
 
 					<button id="formButton" class="formButton" type="submit">
 						Send Message

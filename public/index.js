@@ -28,6 +28,7 @@ document.getElementById('contactForm').addEventListener('submit', async (e) => {
 
 		const result = await response.json();
 
+		// ui feedback on message send
 		if (response.ok) {
 			statusDiv.classList.remove('error');
 			statusDiv.classList.add('success');
@@ -67,6 +68,33 @@ document.getElementById('contactForm').addEventListener('submit', async (e) => {
 		statusDiv.style.color = 'red';
 	}
 });
+
+// textarea textlength
+document.addEventListener('DOMContentLoaded', () => {
+	const textAreaEl = document.getElementById('message');
+	const charsLeftEl = document.getElementById('charsLeft');
+	const charCountEl = document.getElementById('charCount');
+
+	// validate/avoid runtime errors if if el ids change or are removed
+	if (!textAreaEl || !charsLeftEl) return;
+
+	// don't do math on srtings
+	const totalChars = Number(textAreaEl.getAttribute("maxlength")) || 500;
+
+	function updateCounter() {
+		const charsUsed = textAreaEl.textLength;
+		const charsLeft = Math.max(totalChars - charsUsed, 0);
+		charsLeftEl.textContent = String(charsLeft);
+
+		// warn when nearing limit...
+		charCountEl.classList.toggle('limit-near', charsLeft <= 50 && charsLeft > 0);
+		// or exceeded
+		charCountEl.classList.toggle('limit-exceeded', charsLeft <= 0);
+	}
+
+	updateCounter(); // init & render value on load
+	textAreaEl.addEventListener('input', updateCounter);
+})
 
 // Infinite scroll for the technologies list
 document.addEventListener('DOMContentLoaded', () => {
