@@ -17,7 +17,6 @@ const PORT = process.env.PORT || 3000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
-app.use(express.static('.')); // Serve static files from root directory (for favicon.ico)
 app.set('view engine', 'ejs');
 app.set('views', './public');
 
@@ -115,6 +114,11 @@ app.get('/resume', (req, res) => {
 	});
 });
 
+const sitemapLimiter = rateLimit({
+	windowMs: 1 * 60 * 1000, // 1 minute
+	max: 60, // allow crawlers while limiting repeated filesystem reads
+});
+
 /**
  * uncomment if x-forwarded-for error in DigitalOcean logs is present.
  * @see https://express-rate-limit.mintlify.app/guides/troubleshooting-proxy-issues
@@ -123,7 +127,7 @@ app.get('/resume', (req, res) => {
 // 	response.send(request.ip);
 // });
 
-app.get('/sitemap.xml', (req, res) => {
+app.get('/sitemap.xml', sitemapLimiter, (req, res) => {
 	const sitemap = fs.readFileSync('sitemap.xml', 'utf8');
 	res.set('Content-Type', 'application/xml');
 	res.send(sitemap);
