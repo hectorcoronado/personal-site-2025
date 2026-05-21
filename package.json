@@ -30,21 +30,21 @@
 		"prebuild": "npm run clean"
 	},
 	"dependencies": {
-		"body-parser": "^2.2.0",
-		"cssnano": "^7.1.1",
-		"cssnano-preset-advanced": "^7.0.9",
-		"dotenv": "^17.2.3",
+		"body-parser": "^2.2.2",
+		"cssnano": "^7.1.9",
+		"cssnano-preset-advanced": "^7.0.16",
+		"dotenv": "^17.4.2",
 		"ejs": "^3.1.10",
-		"express": "^5.1.0",
-		"express-rate-limit": "^8.1.0",
+		"express": "^5.2.1",
+		"express-rate-limit": "^8.5.2",
 		"html-minifier-terser": "^7.2.0",
-		"marked": "^16.4.1",
-		"nodemailer": "^7.0.9",
-		"terser": "^5.44.0",
+		"marked": "^16.4.2",
+		"nodemailer": "^8.0.7",
+		"terser": "^5.47.1",
 		"xss-filters": "^1.2.7"
 	},
 	"devDependencies": {
-		"nodemon": "^3.1.10"
+		"nodemon": "^3.1.14"
 	},
 	"nodemonConfig": {
 		"ext": "js,html,css,svg,json"
